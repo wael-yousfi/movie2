@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Individual from './component/Caroselle';
+import Movie_list from './component/Movie _list';
+import BasicExample from './component/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import data from './component/data';
+import { useEffect, useState } from 'react';
 function App() {
+ 
+ 
+  const [movie,setmovie]=useState(data)
+useEffect(()=>{
+  var x=JSON.parse(localStorage.getItem('movie'))
+  if(x!=null){
+    setmovie([...movie,x])
+  }
+},[])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+<BasicExample/>
+<Individual/>
+<Movie_list movies={movie}/>
+
+
+
+
     </div>
   );
 }
